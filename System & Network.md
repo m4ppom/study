@@ -45,12 +45,19 @@ it subnetting
 
 multicast: 1:n 통신, making group, 특정 그룹에만 전송 ip의 d class 주소사용
 
-
+osi 7layer 계층구조 
+L4 session 동작하ㅡㄴ
+dataflow  layer = 1,2,3,4 physical, datalink ,network, transport 
+data capsulation 
+bit -frame - packet - 
 
 
 현재 사용중인 lte망 
+2nd gen -음성이 메인으로
+
 
 kt 5g network architecture
+
 
 network slice definition
 
