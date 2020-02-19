@@ -28,5 +28,51 @@ addToCollection사용해서 넣어줄 수 있음
 
 ```
 
+### main.xaml
 
+```
+Assign |	keyindex = 0
+			sumindex = new List(of integer) ({2,3,4}) // 해당 열 리스트로 가져올꺼
+			
+			
+excelOpenScope => excel 파일 지정
+			excel 읽기 range =>시트지정해서 읽음 헤더 포함, Data Table명 설정해줘야 읽은거 넣어줌
+			
+invoke Xaml		| 	다른 xaml파일로 인수들 보내고 받는역할
+					
+```
+
+### data처리.xaml
+
+```
+DataTable Foreach	|	Foreach row in InputDt == inputDT안에 열 값을 row라고해서 돌림
+Assign			|	dickey = row(indexKey).ToString
+
+If				|	dic.Keys.Contains(DicKey) 딕셔너리 안에 키 있는지 condition 설정
+
+	Then	|	assign 	|	buf = dic(DicKey)
+	Else	|	assign	|	buf = new List(of integer)
+				ForEachgeneric	|	Foreach item in IndexSum
+				InvokeMethod	|	TargetType	:	null	목표로하는 타겟
+									TargetObject:	buf
+									Methodname	:	Add		Add메소드 사용가능
+									
+ForEachGeneric		|	Foreach inSum in indexSum
+						assign	|	buf(idx) = buf(idx)+cint(row(inSum).ToString)
+
+assign		|	dic(DicKey) = buf
+키컬럼추가		|	DT명,	column명
+ForEachGeneric		|	Foreach item in dic.Keys
+					Assign		| 	row1 = outdt.NewRow
+									row1(InputDT.Columns(IndexKey).ColumnName) = item
+					ForEachGeneric	|	Foreach item in IndexSum
+									Assign	|	row1(InputDT.Columns(IndexKey).ColumnName) = vuf(idx)
+
+DataTable에 추가
+DataTable Copy 데이타 테이블을 카피해서 invoke 출력부분으로 보내버림.
+
+									
+						
+									
+```
 
