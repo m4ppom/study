@@ -11,6 +11,9 @@
             <RowDefinition Height="4"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
+        <TextBlock HorizontalAlignment="Left" Margin="296,40,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="46" Width="208"><Run Text=" Select a message option and then choose the Display button"/><Run Text="."/></TextBlock>
+        <RadioButton x:Name="HelloButton" Content="Hello" HorizontalAlignment="Left" Margin="277,158,0,0" VerticalAlignment="Top" Grid.Row="1" Width="115"/>
+        <RadioButton x:Name="GoodbyeButton" Content="Goodbye" HorizontalAlignment="Left" Margin="466,158,0,0" VerticalAlignment="Top" Grid.Row="1" Width="103"/>
+        <Button x:Name="Display" Content="Display" HorizontalAlignment="Left" Margin="386,233,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Display_Click"/>
     </Grid>
 </Window>

@@ -24,5 +24,27 @@ namespace HelloWPFApp
         {
             InitializeComponent();
         }
+
+        private void RadioButton_Checked()
+        {
+
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Display_Click(object sender, RoutedEventArgs e)
+        {
+            if (HelloButton.IsChecked == true)
+            {
+                MessageBox.Show("Hello.");
+            }
+            else if (GoodbyeButton.IsChecked == true)
+            {
+                MessageBox.Show("Goodbye.");
+            }
+        }
     }
 }
