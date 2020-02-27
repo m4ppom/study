@@ -76,3 +76,11 @@ DataTable Copy 데이타 테이블을 카피해서 invoke 출력부분으로 보
 									
 ```
 
+
+
+```
+딕셔너리 넣을 때 초기화해줘야함 dictionary
+DataTable 넣을때 인덱스처럼 DT(0)(0)이런식으로 assign으로 넣을 수 있음.
+
+```
+
