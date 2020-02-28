@@ -1,4 +1,4 @@
-# RPA antbot
+# rhrhRPA antbot
 
 
 
@@ -82,5 +82,30 @@ DataTable Copy 데이타 테이블을 카피해서 invoke 출력부분으로 보
 딕셔너리 넣을 때 초기화해줘야함 dictionary
 DataTable 넣을때 인덱스처럼 DT(0)(0)이런식으로 assign으로 넣을 수 있음.
 
+```
+
+# 데이터테이블 DT
+
+## 값 변경, 삽입
+
+```
+
+dataTable( row 인덱스 )( col 이름이나 인덱스 )  = 들어갈 값 or 변경할 값
+
+== datarow사용 ==
+datarow 선언해주고 assign으로  
+datarow이름 = 사용할 DT   (형태받아오기위해)
+datarow("column명") = 들어갈 값
+
+#####row 추가 액티비티 사용 ######
+
+
+```
+
+# 딕셔너리 Dic
+
+```
+
+d
 ```
 
