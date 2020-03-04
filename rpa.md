@@ -102,10 +102,36 @@ datarow("column명") = 들어갈 값
 
 ```
 
+
+
+## 열추가
+
+```
+액티비티 dataTable에 Column추가 사용
+Column이름 == Header 등록 가능
+
+```
+
+
+
+
+
 # 딕셔너리 Dic
 
 ```
-
-d
+선언할 때 
+assign  액티비티
+dic이름 = New Dictionary(Of string, DataTable) 	선언해주고 사용해야
 ```
+
+
+
+# flowdecision	
+
+```
+조건을 플로우디시전을 사용해서 걸어줄 수 있음.
+
+```
+
+
 
