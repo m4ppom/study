@@ -135,3 +135,14 @@ dic이름 = New Dictionary(Of string, DataTable) 	선언해주고 사용해야
 
 
 
+## UI AUTO
+
+```
+값을 찾을 때 속성값을 DT에서 받아와서 변수를 넣어주는 형식으로 원하는 속성 크롤링 가능.
+
+```
+
+
+
+
+
