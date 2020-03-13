@@ -126,6 +126,15 @@ dic이름 = New Dictionary(Of string, DataTable) 	선언해주고 사용해야
 
 
 
+## List
+
+```
+contains로 안에 정보 확인할 수 있음.
+
+```
+
+
+
 # flowdecision	
 
 ```
@@ -143,6 +152,23 @@ dic이름 = New Dictionary(Of string, DataTable) 	선언해주고 사용해야
 ```
 
 
+
+## Trim
+
+```c#
+-trim 		문자열의 시작과 끝의 문자 배열에서 지정하는 문자 제거 가능
+string_word.trim
+    
+-trimend  	새 문자열 개체를 생성해줌 끝에서 문자를 제거.마지막단어, 첫번쨰 단어 제거.
+    
+```
+
+
+
+```
+리스트 0건일때 ==== 있을때 조건.
+
+```
 
 
 
