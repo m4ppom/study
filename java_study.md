@@ -84,7 +84,9 @@ a2. vatrate =3;
 // class 복제안해도됨. a1, a2 ==> instance
 // procedural programming
 
-
+ppublic void instanceMethod(){
+    
+}
 
 
 
