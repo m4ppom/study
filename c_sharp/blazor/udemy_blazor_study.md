@@ -30,6 +30,8 @@ the client side model(blazor WebAssembly)
 
 ![1594427675705](images/assem_vs_server.png)
 
+> 웹어셈블리랑 서버 비교
+
 https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor
 
 ![1594429486203](images/download1.png)
@@ -40,7 +42,7 @@ https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor
 
 ![powershell1](images/powershell1.png)
 
-
+> 파워셀에서 dotnet 확인.
 
 ---
 
@@ -201,13 +203,26 @@ foreach를 돌릴때 안에 하드코딩 하지 않아도 됨. 다른 곳의 att
 
 > displayButtons랑 연결해서 체크 됐을때 안보일때 설정 가능 
 
+### Bind
 
+```csharp
+<p>Current count: @currentCount</p>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<input type="number" @bind="currentCount"/> 
+```
 
+> binding해서 같이 변화하게 할 수 있음.
 
+---
 
+### Lifecycle of a Component
 
+- d
+- d
 
+```csharp
 
+```
 
 
 

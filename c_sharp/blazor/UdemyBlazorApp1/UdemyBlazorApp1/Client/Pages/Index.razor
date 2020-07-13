@@ -2,53 +2,23 @@
 @using UdemyBlazorApp1.Client.Helpers
 
 
-<p>Hello, @name.ToUpper()</p>
-<p>hi, @CustomToUpper(name)</p>
-<p>hi, @StringUtilities2.CustomToUpper2(name)</p>
-<p>hi, @StringUtilities3.CustomToUpper3(name)</p>
-
-<p>let's add 2+2 = @(2+2)</p>
-<button @onclick="@(() => Console.WriteLine("I've been clicked"))">push me</button>
-<button @onclick="@WriteInLog">push me</button>
-
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
 <div>
     <h3>Movie</h3>
-    <MoviesList  />
-</div>
-<div>
-    <h2>Marsa Name</h2>
-    <DummyTextBox placeholder="movie name" disabled="true" />
-</div>  
-
-<div>
-    <h2>Create a movie</h2>
-    <DummyTextBox @attributes="dummyTextboxParameters" />
+    <MoviesList Movies="movies" />
 </div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
 
 @code{
-    private Dictionary<string, object> dummyTextboxParameters = new Dictionary<string, object>()
+    private List<Movie> movies = new List<Movie>();
+    protected async override Task OnInitializedAsync()
     {
-        { "placeholder", "new movie name 2 "} ,
-        { "disabled", "true"}
-    };
-
-
-    string name = "Marsa";
-    string CustomToUpper(string value) => value.ToUpper();
-
-    void WriteInLog()
-    {
-        Console.WriteLine("I've been CLICKED!!!");
-        Console.WriteLine("I've been CLICKED!!!");
+        await Task.Delay(2000);
+        movies = new List<Movie>()
+        {
+            new Movie(){Title = "Spider-man : Far From Home", Releasedate = new DateTime(2019,7,2)},
+            new Movie(){Title = "Moana", Releasedate = new DateTime(2016, 11, 23)},
+            new Movie(){Title = "Inception", Releasedate = new DateTime(2010, 7, 16)}
+        };
     }
-    public class StringUtilities2
-    {
-        public static string CustomToUpper2(string value) => value.ToUpper();
-    }
+
 }

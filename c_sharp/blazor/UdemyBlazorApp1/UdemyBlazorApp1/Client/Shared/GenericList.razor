@@ -1,0 +1,45 @@
+﻿@typeparam TItem
+
+@if (List == null)
+{
+    @if (NullTemplate != null)
+    {
+        @NullTemplate
+    }
+    else
+    {
+        // if child content is null
+        // Default Content
+        <img src="https://thumbs.gfycat.com/ElasticHalfAbyssiniancat-size_restricted.gif" />
+    }
+    <text>loading...</text>
+}
+else if (List.Count == 0)
+{
+    <text>There are no records to show</text>
+    @if (EmptyTemplate != null)
+    {
+        @EmptyTemplate
+    }
+    else
+    {
+        // if child content is null
+        // Default Content
+        <text>There are no records to show</text>
+    }
+}
+else
+{
+    @foreach (var element in List)
+    {
+        @ElementTemplate(element)
+    }
+    <hr />
+}
+
+@code {
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
+    [Parameter] public RenderFragment<TItem> ElementTemplate { get; set; }
+    [Parameter] public List<TItem> List { get; set; }
+}
