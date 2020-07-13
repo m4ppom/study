@@ -93,6 +93,20 @@ Welcome to your new app.
 
 - for , foreach 사용가능 code 부분에서 선언해주고 불러올 수 있음.
 
+```csharp
+    @foreach (var movie in Movies)
+    {
+        <p>Title : @((MarkupString)movie.Title)</p>
+        <p>Release Date : <b>@movie.Releasedate.ToString("dd MMM yyy")</b></p>
+    }
+    <hr />
+    @for (var i = 0; i < Movies.Count; i++)
+    {
+        <p>Title : <b>@Movies[i].Title</b></p>
+        <p>Release Date : <b>@Movies[i].Releasedate.ToString("dd MMM yyy")</b></p>
+    }
+```
+
 ### Async
 
 - 지연을 줄 수 있음
@@ -166,7 +180,26 @@ else
 
 shared에서 선언된거 가져올 수 있음
 
+```csharp
+    @foreach (var movie in Movies)
+    {
+        <IndividualMovie Movie="movie" />
+    }
+```
 
+foreach를 돌릴때 안에 하드코딩 하지 않아도 됨. 다른 곳의 attribute parameter 불러와서 사용 가능.
+
+### Event
+
+- checkbox
+
+```csharp
+<input type="checkbox" @onchange="@(() => displayButtons = !displayButtons )"/>
+
+<IndividualMovie Movie="movie" DisplayButtons="displayButtons"/>
+```
+
+> displayButtons랑 연결해서 체크 됐을때 안보일때 설정 가능 
 
 
 

@@ -17,19 +17,26 @@ Welcome to your new app.
 
 <div>
     <h3>Movie</h3>
-   <MoviesList  />
-    @*<p>Title : <b>@spiderman.Title</b></p>
-        <p>Release Date : <b>@spiderman.Releasedate.ToString("dd MMM yyy")</b></p> *@
-
+    <MoviesList  />
 </div>
 <div>
-    <DummyTextBox />
-</div> 
+    <h2>Marsa Name</h2>
+    <DummyTextBox placeholder="movie name" disabled="true" />
+</div>  
+
+<div>
+    <h2>Create a movie</h2>
+    <DummyTextBox @attributes="dummyTextboxParameters" />
+</div>
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code{
-
+    private Dictionary<string, object> dummyTextboxParameters = new Dictionary<string, object>()
+    {
+        { "placeholder", "new movie name 2 "} ,
+        { "disabled", "true"}
+    };
 
 
     string name = "Marsa";
@@ -44,12 +51,4 @@ Welcome to your new app.
     {
         public static string CustomToUpper2(string value) => value.ToUpper();
     }
-
-    //Movie spiderman = new Movie()
-    //{
-    //    Title = "Spider man : far from home",
-    //    Releasedate = new DateTime(2019, 7, 2)
-
-    //};
-
 }

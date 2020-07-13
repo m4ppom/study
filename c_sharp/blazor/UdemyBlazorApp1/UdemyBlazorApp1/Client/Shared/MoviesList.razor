@@ -1,6 +1,6 @@
 ﻿@if (Movies == null)
 {
-    <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" />
+    <img src="https://thumbs.gfycat.com/ElasticHalfAbyssiniancat-size_restricted.gif" />
     <text>loading...</text>
 }
 else if(Movies.Count == 0)
@@ -9,21 +9,19 @@ else if(Movies.Count == 0)
 }
 else
 {
+    <input type="checkbox" @onchange="@(() => displayButtons = !displayButtons )"/>
+
     @foreach (var movie in Movies)
     {
-        <p>Title : @((MarkupString)movie.Title)</p>
-        <p>Release Date : <b>@movie.Releasedate.ToString("dd MMM yyy")</b></p>
+        <IndividualMovie Movie="movie" DisplayButtons="displayButtons"/>
     }
     <hr />
-    @for (var i = 0; i < Movies.Count; i++)
-    {
-        <p>Title : <b>@Movies[i].Title</b></p>
-        <p>Release Date : <b>@Movies[i].Releasedate.ToString("dd MMM yyy")</b></p>
-    }
 }  
 
 @code {
     [Parameter] public List<Movie> Movies { get; set; }
+    bool displayButtons = false;
+
     protected override void OnInitialized()
     {
         Movies = new List<Movie>()
