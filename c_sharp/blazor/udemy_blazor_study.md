@@ -217,8 +217,10 @@ foreach를 돌릴때 안에 하드코딩 하지 않아도 됨. 다른 곳의 att
 
 ### Lifecycle of a Component
 
-- d
-- d
+- Oninitialized | OninintializedAsync
+- OnParametersSet | OnParametersSetAsync
+- OnAfterRender | OnAfterRenderAsync
+- 
 
 ```csharp
 
