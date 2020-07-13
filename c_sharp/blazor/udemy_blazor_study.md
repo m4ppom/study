@@ -93,11 +93,78 @@ Welcome to your new app.
 
 - for , foreach 사용가능 code 부분에서 선언해주고 불러올 수 있음.
 
+### Async
 
+- 지연을 줄 수 있음
 
+```csharp
+ List<Movie> movies;
+    protected async override Task OnInitializedAsync()
+    {
+        await Task.Delay(3000);
+        movies = new List<Movie>()
+        {
+            new Movie(){Title = "Spider-man : Far From Home", Releasedate = new DateTime(2019,7,2)},
+            new Movie(){Title = "Moana", Releasedate = new DateTime(2016, 11, 23)},
+            new Movie(){Title = "Inception", Releasedate = new DateTime(2010, 7, 16)}
+        };
+    }
+```
 
+## 3.Components
 
+- shared folder에 razor file생성하고 그 안에 선언한 내용을 다른 파일에서 불러 올 수 있음 <MoviesList/>
 
+> Shared => MoviesList.razor
+
+```csharp
+@if (movies == null)
+{
+    <text>loading...</text>
+}
+else if(movies.Count == 0)
+{
+    <text>There are no records to show</text>
+}
+else
+{
+    @foreach (var movie in movies)
+    {
+        <p>Title : @((MarkupString)movie.Title)</p>
+        <p>Release Date : <b>@movie.Releasedate.ToString("dd MMM yyy")</b></p>
+    }
+    <hr />
+    @for (var i = 0; i < movies.Count; i++)
+    {
+        <p>Title : <b>@movies[i].Title</b></p>
+        <p>Release Date : <b>@movies[i].Releasedate.ToString("dd MMM yyy")</b></p>
+    }
+}
+
+@code {
+    List<Movie> movies;
+    protected  override void OnInitialized()
+    {
+        movies = new List<Movie>()
+        {
+            new Movie(){Title = "Spider-man : Far From Home", Releasedate = new DateTime(2019,7,2)},
+            new Movie(){Title = "Moana", Releasedate = new DateTime(2016, 11, 23)},
+            new Movie(){Title = "Inception", Releasedate = new DateTime(2010, 7, 16)}
+        };
+    }
+}
+
+```
+
+### Parameter
+
+- [parameter] code에 넣어서 
+
+```csharp
+[Parameter] public List<Movie> Movies { get; set; }
+```
+
+shared에서 선언된거 가져올 수 있음
 
 
 

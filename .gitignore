@@ -362,7 +362,7 @@ MigrationBackup/
 
 .vscode/
 *.ipynb
-images/
+
 myPackage/
 ipynb_checkpoints/
 

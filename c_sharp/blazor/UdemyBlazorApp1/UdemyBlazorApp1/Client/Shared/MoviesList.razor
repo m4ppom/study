@@ -1,0 +1,36 @@
+﻿@if (Movies == null)
+{
+    <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" />
+    <text>loading...</text>
+}
+else if(Movies.Count == 0)
+{
+    <text>There are no records to show</text>
+}
+else
+{
+    @foreach (var movie in Movies)
+    {
+        <p>Title : @((MarkupString)movie.Title)</p>
+        <p>Release Date : <b>@movie.Releasedate.ToString("dd MMM yyy")</b></p>
+    }
+    <hr />
+    @for (var i = 0; i < Movies.Count; i++)
+    {
+        <p>Title : <b>@Movies[i].Title</b></p>
+        <p>Release Date : <b>@Movies[i].Releasedate.ToString("dd MMM yyy")</b></p>
+    }
+}  
+
+@code {
+    [Parameter] public List<Movie> Movies { get; set; }
+    protected override void OnInitialized()
+    {
+        Movies = new List<Movie>()
+        {
+            new Movie(){Title = "Spider-man : Far From Home", Releasedate = new DateTime(2019,7,2)},
+            new Movie(){Title = "Moana", Releasedate = new DateTime(2016, 11, 23)},
+            new Movie(){Title = "Inception", Releasedate = new DateTime(2010, 7, 16)}
+        };
+    }
+}

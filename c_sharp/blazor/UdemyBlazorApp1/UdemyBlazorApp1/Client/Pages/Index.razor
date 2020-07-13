@@ -17,25 +17,20 @@ Welcome to your new app.
 
 <div>
     <h3>Movie</h3>
+   <MoviesList  />
     @*<p>Title : <b>@spiderman.Title</b></p>
         <p>Release Date : <b>@spiderman.Releasedate.ToString("dd MMM yyy")</b></p> *@
-    @foreach (var movie in movies)
-    {
-        <p>Title : <b>@movie.Title</b></p>
-        <p>Release Date : <b>@movie.Releasedate.ToString("dd MMM yyy")</b></p>
-    }
-    <hr />
-    @for (var i = 0; i < movies.Count; i++)
-    {
-        <p>Title : <b>@movies[i].Title</b></p>
-        <p>Release Date : <b>@movies[i].Releasedate.ToString("dd MMM yyy")</b></p>
-    }
 
 </div>
+<div>
+    <DummyTextBox />
+</div> 
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code{
+
+
 
     string name = "Marsa";
     string CustomToUpper(string value) => value.ToUpper();
@@ -57,14 +52,4 @@ Welcome to your new app.
 
     //};
 
-    List<Movie> movies;
-    protected override void OnInitialized()
-    {
-        movies = new List<Movie>()
-        {
-            new Movie(){Title = "Spider-man : Far From Home", Releasedate = new DateTime(2019,7,2)},
-            new Movie(){Title = "Moana", Releasedate = new DateTime(2016, 11, 23)},
-            new Movie(){Title = "Inception", Releasedate = new DateTime(2010, 7, 16)}
-        };
-    }
 }
