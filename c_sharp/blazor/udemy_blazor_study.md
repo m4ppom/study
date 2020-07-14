@@ -220,11 +220,42 @@ foreach를 돌릴때 안에 하드코딩 하지 않아도 됨. 다른 곳의 att
 - Oninitialized | OninintializedAsync
 - OnParametersSet | OnParametersSetAsync
 - OnAfterRender | OnAfterRenderAsync
-- 
+- Rendering
 
 ```csharp
+@code {
+    [Parameter] public List<Movie> Movies { get; set; }
+
+    bool displayButtons = true;
+
+    private void DeleteMovie(Movie movie)
+    {
+        Movies.Remove(movie);
+    }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("OnInitialized. Movies.Conut = " + Movies.Count.ToString());
+    }
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine("OnParametersSet. Movies.Conut = " + Movies.Count.ToString());
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Console.WriteLine("OnAfterRender FirstRender = " + firstRender.ToString());
+    }
+    protected override bool ShouldRender()
+    {
+        return true;
+    }
+}
 
 ```
+
+
+
+
 
 
 

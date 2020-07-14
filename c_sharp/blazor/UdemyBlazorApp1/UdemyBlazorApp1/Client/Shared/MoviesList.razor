@@ -8,9 +8,10 @@
 </GenericList>
 
 @code {
-    [Parameter] public List<Movie> Movies { get; set; }  
+    [Parameter] public List<Movie> Movies { get; set; }
 
     bool displayButtons = true;
+
     private void DeleteMovie(Movie movie)
     {
         Movies.Remove(movie);
@@ -18,11 +19,18 @@
 
     protected override void OnInitialized()
     {
-        Movies = new List<Movie>()
-{
-            new Movie(){Title = "Spider-man : Far From Home", Releasedate = new DateTime(2019,7,2)},
-            new Movie(){Title = "Moana", Releasedate = new DateTime(2016, 11, 23)},
-            new Movie(){Title = "Inception", Releasedate = new DateTime(2010, 7, 16)}
-        };
+        Console.WriteLine("OnInitialized. Movies.Conut = " + Movies.Count.ToString());
+    }
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine("OnParametersSet. Movies.Conut = " + Movies.Count.ToString());
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Console.WriteLine("OnAfterRender FirstRender = " + firstRender.ToString());
+    }
+    protected override bool ShouldRender()
+    {
+        return true;
     }
 }

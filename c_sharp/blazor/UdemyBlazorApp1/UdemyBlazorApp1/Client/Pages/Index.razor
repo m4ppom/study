@@ -7,6 +7,7 @@
     <MoviesList Movies="movies" />
 </div>
 
+<button @onclick="AddNewMovie">Add new movie</button>
 
 @code{
     private List<Movie> movies = new List<Movie>();
@@ -21,4 +22,8 @@
         };
     }
 
+    private void AddNewMovie()
+    {
+        movies.Add(new Movie() { Title = "Movie Sample", Releasedate = DateTime.Today });
+    }
 }
