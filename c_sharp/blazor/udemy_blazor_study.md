@@ -1,4 +1,4 @@
-# Programming in Blazor - ASP.NET Core 3.2
+# Programming in Blazor - ASP.NET Core 3.2 
 
 ---
 
