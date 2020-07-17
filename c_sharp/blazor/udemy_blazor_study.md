@@ -255,6 +255,23 @@ foreach를 돌릴때 안에 하드코딩 하지 않아도 됨. 다른 곳의 att
 
 
 
+### Dependency Injection
+
+- 다른 클래스에 종속을 허용하는거
+- @inject 로 사용 가능
+
+###### HttpClient : Is used to make HTTPRequests to a web server
+
+###### IJSRuntime : Is used to work with JS
+
+###### NavigationManager : Allows to  work with the user's navigation from code
+
+```
+Scoped : Lives within a context(like during HTTP request)
+Singleton : Single instance
+Transient : Different instances of the service ar created each time that service is requested
+```
+
 
 
 

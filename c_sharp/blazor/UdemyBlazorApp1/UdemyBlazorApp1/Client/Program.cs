@@ -16,10 +16,13 @@ namespace UdemyBlazorApp1.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
-
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
+            ConfigureServices(builder.Services);
             await builder.Build().RunAsync();
+        }
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddOptions(); // Authorization System
+            services.AddSingleton<SingletonServices>();
         }
     }
 }
