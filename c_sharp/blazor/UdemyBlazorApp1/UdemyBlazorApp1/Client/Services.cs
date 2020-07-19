@@ -7,12 +7,12 @@ namespace UdemyBlazorApp1.Client
 {
     public class SingletonServices
     {
-        public int Valor { get; set; }
+        public int Value { get; set; }
 
     }
     public class TransientServices
     {
-        public int Valor { get; set; }
+        public int Value { get; set; } 
 
     }
 }
