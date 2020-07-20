@@ -1,6 +1,5 @@
 ﻿@page "/counter"
-@inject SingletonServices singleton
-@inject TransientServices transient
+
 
 <h1>Counter</h1>
 
@@ -13,26 +12,3 @@
 
 <MoviesList Movies="movies" />
 
-
-@code {
-    private List<Movie> movies;
-    protected override void OnInitialized()
-    {
-        movies = new List<Movie>()
-        {
-            new Movie() {Title = "Koker", Releasedate = new DateTime(2020, 6, 2)},
-            new Movie() {Title = "Avengers", Releasedate = new DateTime(2016, 11, 23)},
-        };
-    }
-
-
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-
-        transient.Value = currentCount;
-        singleton.Value = currentCount;
-    }
-} 

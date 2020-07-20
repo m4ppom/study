@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Components;
+using UdemyBlazorApp1.Client.Helpers;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 namespace UdemyBlazorApp1.Client
 {
@@ -9,12 +10,13 @@ namespace UdemyBlazorApp1.Client
         {
             services.AddSingleton<SingletonServices>();
             services.AddTransient<TransientServices>();
+            services.AddTransient<Repository, RepositoryInMemory>();
         }
-        public void Configure(IComponentsApplicationBuilder app)
+        /* public void Configure(IComponentsApplicationBuilder app)
         {
             app.AddComponent<App>("app");
         }
-
+        */
     }
 }
  

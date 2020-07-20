@@ -274,13 +274,30 @@ Transient : Different instances of the service ar created each time that service
 
 
 
+### Partial Class
+
+- Html, C# 코드 따로 쓰고 싶을 때
+
+- 이름.razor.cs로 파일 만들어서 class 선언에서 partial => razor파일의 @code부분을 partial class로 가져옴
+
+```csharp
+using Microsoft.AspNetCore.Components;
 
 
+		[Inject] SingletonServices singleton { get; set; }
+        [Inject] TransientServices transient { get; set; }
+```
 
+> razor.cs파일에 위 처럼 넣어서 razor 파일에서 @inject안 쓸 수 있음
 
+### Layout
 
+- shared folder에 위치함
+- MainLayout.razor -> body 다른 파일들 공유할 수 있음
 
+### Invoke JS
 
+- Blazor app에 JS함수 넣고 싶을 때 사용 IJSRuntime
 
 
 
