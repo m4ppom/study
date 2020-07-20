@@ -8,6 +8,6 @@ namespace UdemyBlazorApp1.Client.Helpers
 {
     public interface Repository
     {
-        List<Movie> GetMovies();
+        new List<Movie> GetMovies(); 
     }
 }

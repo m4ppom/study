@@ -1,11 +1,8 @@
 ﻿@page "/"
-@inject SingletonServices singleton
-@inject TransientServices transient
-@inject Repository repository
+
 
 @using UdemyBlazorApp1.Client.Helpers
 
-<p>Singleton count : @singleton.Value</p>
 
 <div>
     <h3>Movie</h3>
@@ -19,7 +16,7 @@
     protected async override Task OnInitializedAsync()
     {
         await Task.Delay(2000);
-        movies = repository.GetMovies();
+        // movies = repository.GetMovies();
     }
 
     private void AddNewMovie()

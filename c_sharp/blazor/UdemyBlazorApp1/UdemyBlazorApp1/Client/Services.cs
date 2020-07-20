@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace UdemyBlazorApp1.Client
-{
+{/*
     public class SingletonServices
     {
         public int Value { get; set; }
@@ -14,5 +14,5 @@ namespace UdemyBlazorApp1.Client
     {
         public int Value { get; set; } 
 
-    }
+    }*/
 }
