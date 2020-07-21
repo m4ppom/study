@@ -1,17 +1,18 @@
 ﻿@page "/"
-
+@using static UdemyBlazorApp1.Client.Shared.MainLayout;
 
 @using UdemyBlazorApp1.Client.Helpers
 
 
 <div>
-    <h3>Movie</h3>
-    <MoviesList Movies="movies" />
+    <h3 style="color:@AppState.Color">Movie</h3>
+    <MoviesList  Movies="movies" />
 </div>
 
 <button @onclick="AddNewMovie">Add new movie</button>
 
 @code{
+    [CascadingParameter] public AppState AppState { get; set; }
     private List<Movie> movies = new List<Movie>();
     protected async override Task OnInitializedAsync()
     {

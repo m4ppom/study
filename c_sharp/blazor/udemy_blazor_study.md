@@ -299,5 +299,58 @@ using Microsoft.AspNetCore.Components;
 
 - Blazor app에 JS함수 넣고 싶을 때 사용 IJSRuntime
 
+### Modal
+
+```csharp
+<div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true" style="display: block;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+### cascading parameter
+
+- 부모에서 상속되는 값
+- 여러군데 사용될때 편하게 
+
+```csharp
+<CascadingValue Value="@Color">
+    <CascadingValue Value="@Size">
+    	@Body
+    </CascadingValue>
+</CascadingValue>
+```
+
+>  [CascadingParameter] public AppState AppState { get; set; } 로 @code에서 연결시켜줌
+
+
+
+### How to debug Blazor WebAssembly Apps
+
+- breaking point 설정해두고 디버깅모드. => 일반적인 c# 디버그 하는것처럼
+
+
+
+
+
+
+
+
+
+
+
 
 
