@@ -1,0 +1,40 @@
+﻿@page "/community"
+
+<h3>Community</h3>
+<div class="container-fluid">
+    <div>
+        <h3>게시판</h3>
+        <h3>문의 내역 확인할 수 있습니다.</h3>
+    </div>
+    <div class="col-sm-12 col-md-10 wpsc_ticket_list_container table-responsive">
+        <tr>
+            <td>Title</td>
+            <td>Name</td>
+            <td>Date</td>
+            <hr />
+        </tr>
+        @foreach (var community in communities)
+        {
+            <tr style="cursor:grab">
+                <td><b>@community.Title</b></td>
+                <td><b>@community.Name</b></td>
+                <td>@community.Releasedate.ToString("yyyy MMM dd")</td>
+            </tr>
+        }
+        <hr />
+    </div>
+</div>
+
+
+@code {
+    private List<Community2> communities;
+    protected override void OnInitialized()
+    {
+        communities = new List<Community2>()
+        {
+                new Community2(){Title = "Spider-man : Far From Home", Name = "거미", Releasedate = new DateTime(2019,7,2)},
+                new Community2(){Title = "Moana", Name = "모아", Releasedate = new DateTime(2016, 11, 23)},
+                new Community2(){Title = "Inception", Name = "인셉", Releasedate = new DateTime(2010, 7, 16)}
+        };
+    }
+}
