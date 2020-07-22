@@ -130,6 +130,9 @@ Welcome to your new app.
 ## 3.Components
 
 - shared folder에 razor file생성하고 그 안에 선언한 내용을 다른 파일에서 불러 올 수 있음 <MoviesList/>
+- Components는 Application을 재사용 가능한 부분으로 나눌 수 있게 도와줌
+- visual part | logical part로 나눔
+- 
 
 > Shared => MoviesList.razor
 
@@ -342,7 +345,47 @@ using Microsoft.AspNetCore.Components;
 
 - breaking point 설정해두고 디버깅모드. => 일반적인 c# 디버그 하는것처럼
 
+### 요약
 
+- Components는 Application을 재사용 가능한 부분으로 나눌 수 있게 도와줌 , visual part | logical part로 나눔
+- Parameter는 component간에 정보를 이동가능하게해줌
+- Event는  user action에 반응하는 function을 실행는 것을 도와줌
+- Data Binding은 html element나 컴포넌트를 C#변수들과 동기화해줌
+- EventCallback는 이벤트를 파라미터처럼 컴포넌트에 넘겨줌
+
+## 4.Routing
+
+
+
+## 5.Forms
+
+
+
+## 6.Communicating with the Back-End-HTTP-Entity Framework Core
+
+
+
+## 7.Security
+
+
+
+## 8. Deployment
+
+
+
+## 9.Sharing Code and Razor Class Libraries
+
+
+
+
+
+## 10.Blazor Server and Dual-Architecture
+
+
+
+
+
+## 11.Internationalization
 
 
 
