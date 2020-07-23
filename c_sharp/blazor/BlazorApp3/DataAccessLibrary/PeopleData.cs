@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLibrary
 {
-    public class PeopleData
+    public class PeopleData : IPeopleData
     {
         private readonly ISqlDataAccess _db;
         public PeopleData(ISqlDataAccess db)
