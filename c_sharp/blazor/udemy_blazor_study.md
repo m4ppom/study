@@ -389,7 +389,17 @@ using Microsoft.AspNetCore.Components;
 
 
 
+## 12. SignalR
 
+- ASP.NET Core SignalR : 응용 프로그램에 실시간 웹 기능 추가 간소화.
+
+```
+연결 관리 자동처리
+모든 클라이언트, 특정 클라이언트에 메세지 보내기 가능
+늘어난 트래픽 처리를 위한 크기조정
+```
+
+> SignalR기능
 
 
 

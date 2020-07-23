@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AntCommunityBlazorApp.Shared.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace AntCommunityBlazorApp.Server.DataAccess
 {
@@ -14,7 +17,7 @@ namespace AntCommunityBlazorApp.Server.DataAccess
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(@"Put Your Connection string here");
-            }
+            }   
         }
     }
 }
