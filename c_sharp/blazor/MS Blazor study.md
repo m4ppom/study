@@ -13,3 +13,69 @@ Version for package `Microsoft.AspNetCore.Blazor.Cli` could not be resolved.
 
 ```
 
+# Blazor study
+
+## Intro
+
+### Sartup.cs & Program.cs
+
+### App.razor
+
+- Main page
+-  불러오면 @routeData로 찾아서 찾아보고 없으면 not found
+
+### Shared folder
+
+- MainLayout <NavMenu /> @Body 처럼 연결해 줄 수 있음.
+
+### _host.cshtml
+
+- 일반적은 html파일 같음.
+- bootstrap, css 같은거 연결해 줄 수 있음. 
+- design service of application
+
+```html
+<script src="_framework/blazor.server.js"></script>
+```
+
+> built-in server js file to communicate back to the server 고칠 필요 없음.
+
+---
+
+## actual pages
+
+### Pages -> Counter, FetchData
+
+```
+razor page application -> .cshtml
+blazor page application -> .razor
+```
+
+### Counter.razor
+
+- @page : 나는 페이지고 /counter로 들어갈 수 있어. path 
+- 다음부분은 html 
+- @code 부분 : 위에서 쓸 내용들 선언해 줄 수 있음.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
