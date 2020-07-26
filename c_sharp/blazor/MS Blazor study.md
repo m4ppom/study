@@ -57,7 +57,12 @@ blazor page application -> .razor
 - 다음부분은 html 
 - @code 부분 : 위에서 쓸 내용들 선언해 줄 수 있음.
 
+ ### Fetchdata.razor
 
+- page => url
+- using .Data -> data값 불러오기위해서 using 해줌
+- @inject WeatherForecastService ForcastService  -> dependency injection  -> startup.cs에서 services에서 singleton으로 넣어줄 수 있음 inject된 이름을 ForecastService로 받겠다는거.
+- 
 
 
 
