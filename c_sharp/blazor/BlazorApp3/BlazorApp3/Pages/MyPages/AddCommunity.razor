@@ -1,0 +1,48 @@
+﻿@page "/Data/Community/AddCommunity"
+@using DataAccessLibrary
+@using DataAccessLibrary.Models
+@using BlazorApp3.Models
+
+@inject ICommunityData _db
+
+<h3>AddCommunity</h3>
+
+<h4>Insert New</h4>
+<EditForm Model="@newCommunity" OnValidSubmit="@InsertCommunity">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <InputText id="Name" @bind-Value="newCommunity.Name" />
+    <InputText id="Text" @bind-Value="newCommunity.Text" />
+    <InputText id="emailAddress" @bind-Value="newCommunity.EmailAddress" />
+    <button type="submit" class="btn btn-primary"> Add! </button>
+</EditForm>
+
+@code {
+    private List<CommunityModel> community;
+    private DisplayCommunityModel newCommunity = new DisplayCommunityModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        community = await _db.GetCommunity();
+    }
+
+    private async Task InsertCommunity()
+    {
+        CommunityModel C = new CommunityModel
+        {
+            Name = newCommunity.Name,
+            Text = newCommunity.Text,
+            EmailAddress = newCommunity.EmailAddress
+        };
+        await _db.InsertCommunity(C);
+
+        community.Add(C);
+        newCommunity = new DisplayCommunityModel();
+    }
+
+}
+
+
+
+
+

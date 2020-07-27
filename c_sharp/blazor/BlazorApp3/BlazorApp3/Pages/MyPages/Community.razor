@@ -1,0 +1,117 @@
+﻿@page "/Data/Community"
+@using DataAccessLibrary
+@using DataAccessLibrary.Models
+@using BlazorApp3.Models
+
+
+@inject ICommunityData _db
+
+<h1>Community Page</h1>
+<h3>Community</h3>
+@if (community is null)
+{
+    <p><em>Loadddding~~~</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Text</th>
+                <th>Email Address</th>
+                <th>Created Date</th>
+                <th>Answered</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var communit in community)
+            {
+                <tr>
+                    <td>@communit.Name</td>
+                    <td>@communit.Text</td>
+                    <td>@communit.EmailAddress</td>
+                    <td>@communit.CreatedDate</td>
+                    @if (@communit.Answered == 0)
+                    {
+                        <td>not Answered</td>
+                    }
+                    else
+                    {
+                        <td>Answered</td>
+                    };
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    <h4>Insert New</h4>
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <EditForm Model="@newCommunity" OnValidSubmit="@InsertCommunity">
+                    <div class="modal-body">
+
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+                        <InputText id="Name" @bind-Value="newCommunity.Name" />
+                        <InputText id="Text" @bind-Value="newCommunity.Text" />
+                        <InputText id="emailAddress" @bind-Value="newCommunity.EmailAddress" />
+                        <button type="submit" class="btn btn-primary" href="#"> Add! </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"> Add! </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </EditForm>
+            
+                
+            </div>
+        </div>
+    </div>
+
+}
+@code {
+    private List<CommunityModel> community;
+    private DisplayCommunityModel newCommunity = new DisplayCommunityModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        community = await _db.GetCommunity();
+    }
+
+    private async Task InsertCommunity()
+    {
+        CommunityModel C = new CommunityModel
+        {
+            Name = newCommunity.Name,
+            Text = newCommunity.Text,
+            EmailAddress = newCommunity.EmailAddress
+        };
+        await _db.InsertCommunity(C);
+
+        community.Add(C);
+        newCommunity = new DisplayCommunityModel();
+    }
+
+
+    void CommunityModal()
+    {
+
+    }
+}
