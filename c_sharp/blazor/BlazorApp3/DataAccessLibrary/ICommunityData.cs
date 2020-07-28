@@ -8,6 +8,7 @@ namespace DataAccessLibrary
     {
         Task<List<CommunityModel>> GetCommunity();
         Task InsertCommunity(CommunityModel community);
-        Task DeleteCommunity(CommunityModel community);
+        Task DeleteCommunity(CommunityModel communityDel);
+        Task UpdateCommunity(CommunityModel community);
     }
 }

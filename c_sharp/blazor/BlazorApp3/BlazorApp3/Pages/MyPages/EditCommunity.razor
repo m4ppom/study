@@ -1,0 +1,48 @@
+﻿@page "/Data/Community/Edit/{userId:int}"
+@using DataAccessLibrary
+@using DataAccessLibrary.Models
+@using BlazorApp3.Models
+
+
+@inject ICommunityData _db
+
+<h3>EditCommunity</h3>
+<EditForm Model="@upCommunity" OnValidSubmit="@UpdateCommunity">
+    <div class="modal-body" style="grid-auto-rows:inherit">
+
+        작성자 : <InputText id="Name" @bind-Value="upCommunity.Name" />
+        <br />
+        제목 : <InputText id="Title" @bind-Value="upCommunity.Title" />
+        <br />
+        내용 : <InputTextArea id="Text" @bind-Value="upCommunity.Text" />
+        <br />
+        메일 주소 : <InputText id="emailAddress" @bind-Value="upCommunity.EmailAddress" />
+
+    </div>
+    <a></a>
+    <button type="submit" class="btn btn-primary" name="submit" id="submit" onclick="location.href='/Data/Community'"> 수정. </button>
+
+</EditForm>
+
+@code {
+    [Parameter]
+    public int userId { get; set; }
+    private List<CommunityModel> community;
+    private DisplayCommunityModel upCommunity = new DisplayCommunityModel();
+    private async Task UpdateCommunity()
+    {
+        CommunityModel E = new CommunityModel
+        {
+            Name = upCommunity.Name,
+            Title = upCommunity.Title,
+            Text = upCommunity.Text,
+            EmailAddress = upCommunity.EmailAddress,
+            Id = userId
+        };
+        await _db.UpdateCommunity(E);
+        community = await _db.GetCommunity();
+        //community.Add(C);
+        upCommunity = new DisplayCommunityModel();
+    }
+
+}

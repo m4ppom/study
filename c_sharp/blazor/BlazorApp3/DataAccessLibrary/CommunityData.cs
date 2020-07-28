@@ -20,14 +20,20 @@ namespace DataAccessLibrary
         }
         public Task InsertCommunity(CommunityModel community)
         {
-            string sql = @"insert into dbo.CommunityTable (Name, Text, EmailAddress)
-values (@Name, @Text, @EmailAddress);";
+            string sql = @"insert into dbo.CommunityTable (Name, Title, Text, EmailAddress)
+values (@Name, @Title, @Text, @EmailAddress);";
             return _db.SaveData(sql, community);
         }
-        public Task DeleteCommunity(CommunityModel community)
+        public Task DeleteCommunity(CommunityModel communityDel)
         {
-            string sql = @"delete from dbo.CommunityTable where Id = @uid ;";
-            return _db.SaveData(sql, community);
+            string sql = @"delete from dbo.CommunityTable where Id = @Id ;";
+            return _db.SaveData(sql, communityDel);
+        }
+
+        public Task UpdateCommunity(CommunityModel communityUp)
+        {
+            string sql = @"Update dbo.CommunityTable set Name=@Name, Title = @Title, Text =@Text, EmailAddress = @EmailAddress where Id = @Id ;";
+            return _db.SaveData(sql, communityUp);
         }
     }
 }
