@@ -1,0 +1,128 @@
+﻿@page "/Data/Community/Detail/{userId:int}"
+@using DataAccessLibrary
+@using DataAccessLibrary.Models
+@using BlazorApp3.Models
+
+
+<h3>CommunityDetail</h3>
+
+
+
+@inject ICommunityData _db
+
+<h1>Community Page</h1>
+<h3>Community</h3>
+@if (community is null)
+{
+    <p><em>Loadddding~~~</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Email Address</th>
+                <th>Created Date</th>
+                <th>Answered</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var communit in community)
+            {if (communit.Id == userId)
+                {
+                    <tr>
+                        <td>@communit.Name</td>
+                        <td>@communit.Title</td>
+                        <td>@communit.Text</td>
+                        <td>@communit.EmailAddress</td>
+                        <td>@communit.CreatedDate</td>
+                        @if (@communit.Answered == 0)
+                        {
+                            <td>not Answered</td>
+                        }
+                        else
+                        {
+                            <td>Answered</td>
+                        }
+
+                        <td>
+                            <a class="oi oi-paperclip" href="/Data/Community/Edit/@communit.Id"></a>
+                        </td>
+                        <td>
+                            <a href="/Data/Community" style="color:red" class="oi oi-trash" @onclick="(() =>DeleteCommunity(communit.Id))" />
+                        </td>
+                    </tr>
+                }
+                
+            }
+        </tbody>
+    </table>
+}
+
+
+
+@code {
+    private List<CommunityModel> community;
+    private DisplayCommunityModel newCommunity = new DisplayCommunityModel();
+    private DisplayCommunityModel upCommunity = new DisplayCommunityModel();
+    private DeleteCommunityModel delCommunity = new DeleteCommunityModel();
+
+    [Parameter]
+    public int userId { get; set; }
+    [Parameter]
+    public EventCallback<MouseEventArgs> Onclick { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        community = await _db.GetCommunity();
+    }
+
+    private async Task InsertCommunity()
+    {
+        CommunityModel C = new CommunityModel
+        {
+            Name = newCommunity.Name,
+            Title = newCommunity.Title,
+            Text = newCommunity.Text,
+            EmailAddress = newCommunity.EmailAddress
+        };
+        await _db.InsertCommunity(C);
+
+        community.Add(C);
+        newCommunity = new DisplayCommunityModel();
+    }
+
+
+    private async Task DeleteCommunity(int num)
+    {
+        CommunityModel D = new CommunityModel
+        {
+            Id = num
+            // Id = delCommunity.Id
+        };
+        await _db.DeleteCommunity(D);
+        community = await _db.GetCommunity();
+    }
+    /*
+    private async Task UpdateCommunity(int num)
+    {
+        CommunityModel E = new CommunityModel
+        {
+            Name = upCommunity.Name,
+            Title = upCommunity.Title,
+            Text = upCommunity.Text,
+            EmailAddress = upCommunity.EmailAddress,
+            Id = num
+        };
+        await _db.UpdateCommunity(E);
+        community = await _db.GetCommunity();
+        //community.Add(C);
+        upCommunity = new DisplayCommunityModel();
+    }
+    */
+}
+
+

@@ -10,7 +10,7 @@
 <EditForm Model="@upCommunity" OnValidSubmit="@UpdateCommunity">
     <div class="modal-body" style="grid-auto-rows:inherit">
 
-        작성자 : <InputText id="Name" @bind-Value="upCommunity.Name" />
+        작성자 : 
         <br />
         제목 : <InputText id="Title" @bind-Value="upCommunity.Title" />
         <br />
@@ -28,12 +28,12 @@
     [Parameter]
     public int userId { get; set; }
     private List<CommunityModel> community;
-    private DisplayCommunityModel upCommunity = new DisplayCommunityModel();
+    private UpdateCommunityModel upCommunity = new UpdateCommunityModel();
     private async Task UpdateCommunity()
     {
         CommunityModel E = new CommunityModel
         {
-            Name = upCommunity.Name,
+            
             Title = upCommunity.Title,
             Text = upCommunity.Text,
             EmailAddress = upCommunity.EmailAddress,
@@ -42,7 +42,7 @@
         await _db.UpdateCommunity(E);
         community = await _db.GetCommunity();
         //community.Add(C);
-        upCommunity = new DisplayCommunityModel();
+        upCommunity = new UpdateCommunityModel();
     }
 
 }

@@ -19,7 +19,7 @@ else
             <tr>
                 <th>Name</th>
                 <th>Title</th>
-                <th>Text</th>
+                
                 <th>Email Address</th>
                 <th>Created Date</th>
                 <th>Answered</th>
@@ -30,8 +30,8 @@ else
             {
                 <tr>
                     <td>@communit.Name</td>
-                    <td>@communit.Title</td>
-                    <td>@communit.Text</td>
+                    <td onclick="document.location = '/Data/Community/Detail/@communit.Id';" style="cursor:pointer">@communit.Title</td>
+                    
                     <td>@communit.EmailAddress</td>
                     <td>@communit.CreatedDate</td>
                     @if (@communit.Answered == 0)
@@ -44,48 +44,10 @@ else
                     }
 
                 <td>
-                    <a class="oi oi-paperclip" href="/Data/Community/Edit/@communit.Id"></a>
-                    <!--
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updatingModal">
-        수 정u
-    </button>
-
-    <div class="modal fade" id="updatingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">게시글 수정</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-
-                </div>
-                <EditForm Model="@upCommunity">
-                    <div class="modal-body" style="grid-auto-rows:inherit">
-
-                        작성자 : @communit.Name<InputText id="Name" @bind-Value="upCommunity.Name" />
-                        <br />
-                        제목 : @communit.Title<InputText id="Title" @bind-Value="upCommunity.Title" />
-                        <br />
-                        내용 : @communit.Text<InputTextArea id="Text" @bind-Value="upCommunity.Text" />
-                        <br />
-                        메일 주소 : @communit.EmailAddress<InputText id="emailAddress" @bind-Value="upCommunity.EmailAddress" />
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" name="submit" id="submit" @onclick="(() =>UpdateCommunity(communit.Id))" data-dismiss="modal"> 수정. </button>
-
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                    </div>
-                </EditForm>
-            </div>
-        </div>
-    </div>-->
+                    <a style="color:black" class="oi oi-paperclip" href="/Data/Community/Edit/@communit.Id"></a>
                 </td>
                     <td>
                         <a href="/Data/Community" style="color:red" class="oi oi-trash" @onclick="(() =>DeleteCommunity(communit.Id))" />
-                        <!--<input type="button" class="oi oi-trash" aria-hidden="true" style="color:red" onclick="DeleteCommunity(@communit.Id)" />-->
                     </td>
                 </tr>
             }
