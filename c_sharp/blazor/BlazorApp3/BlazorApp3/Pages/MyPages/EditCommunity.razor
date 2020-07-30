@@ -8,32 +8,65 @@
 
 <h3>EditCommunity</h3>
 <EditForm Model="@upCommunity" OnValidSubmit="@UpdateCommunity">
-    <div class="modal-body" style="grid-auto-rows:inherit">
-
-        작성자 : 
-        <br />
-        제목 : <InputText id="Title" @bind-Value="upCommunity.Title" />
-        <br />
-        내용 : <InputTextArea id="Text" @bind-Value="upCommunity.Text" />
-        <br />
-        메일 주소 : <InputText id="emailAddress" @bind-Value="upCommunity.EmailAddress" />
-
+    <div style="grid-template-columns: repeat(3, 1fr)">
+        <table class="table">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <tr>
+                <td class="edittable" >작성자  : </td>
+                <td class="edittable2"> @communityOne.Name</td>
+            </tr>
+            <tr>
+                <td class="edittable">제목 : </td>
+                <td class="edittable2"><InputTextArea style="width:-webkit-fill-available; resize:none; "  id="Title" @bind-Value="upCommunity.Title"/></td>
+            </tr>
+            <tr>
+                <td class="edittable">내용 : </td>
+                <td class="edittable2"><InputTextArea style="width: -webkit-fill-available; resize: none;" id="Text" @bind-Value="upCommunity.Text"  /></td>
+            </tr>
+            <tr>
+                <td class="edittable">메일 주소 : </td>
+                <td class="edittable2"><InputTextArea style="width: -webkit-fill-available; resize: none;"  id="emailAddress" @bind-Value="upCommunity.EmailAddress" /></td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-primary" name="submit" id="submit" onclick="location.href='/Data/Community'"> 수정. </button>
     </div>
-    <a></a>
-    <button type="submit" class="btn btn-primary" name="submit" id="submit" onclick="location.href='/Data/Community'"> 수정. </button>
-
 </EditForm>
 
+
 @code {
+
+    String hj = "ddd";
+
+
     [Parameter]
     public int userId { get; set; }
     private List<CommunityModel> community;
+    private CommunityModel communityOne;
     private UpdateCommunityModel upCommunity = new UpdateCommunityModel();
+    protected override async Task OnInitializedAsync()
+    {
+        communityOne = new CommunityModel();
+        communityOne.Name = "hy";
+        community = await _db.GetCommunity();
+        for(int i=0; i<community.Count; i++){
+            if ((community.ElementAt(i).Id).Equals(userId))
+            {
+                communityOne = community.ElementAt(i);
+            }
+        }
+        upCommunity.Title = communityOne.Title;
+        upCommunity.Text = communityOne.Text;
+        upCommunity.EmailAddress = communityOne.EmailAddress;
+        //communityOne = await _db.getCommunitybyId(userId);
+    }
+
+
     private async Task UpdateCommunity()
     {
         CommunityModel E = new CommunityModel
         {
-            
+
             Title = upCommunity.Title,
             Text = upCommunity.Text,
             EmailAddress = upCommunity.EmailAddress,

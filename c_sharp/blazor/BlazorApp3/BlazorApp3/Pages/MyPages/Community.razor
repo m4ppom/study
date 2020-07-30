@@ -8,61 +8,14 @@
 
 <h1>Community Page</h1>
 <h3>Community</h3>
-@if (community is null)
+<!-- Button trigger modal -->
+<h4>Insert New</h4>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    새 글 등록
+</button>
+
+@if (hj)
 {
-    <p><em>Loadddding~~~</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Title</th>
-                
-                <th>Email Address</th>
-                <th>Created Date</th>
-                <th>Answered</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var communit in community)
-            {
-                <tr>
-                    <td>@communit.Name</td>
-                    <td onclick="document.location = '/Data/Community/Detail/@communit.Id';" style="cursor:pointer">@communit.Title</td>
-                    
-                    <td>@communit.EmailAddress</td>
-                    <td>@communit.CreatedDate</td>
-                    @if (@communit.Answered == 0)
-                    {
-                        <td>not Answered</td>
-                    }
-                    else
-                    {
-                        <td>Answered</td>
-                    }
-
-                <td>
-                    <a style="color:black" class="oi oi-paperclip" href="/Data/Community/Edit/@communit.Id"></a>
-                </td>
-                    <td>
-                        <a href="/Data/Community" style="color:red" class="oi oi-trash" @onclick="(() =>DeleteCommunity(communit.Id))" />
-                    </td>
-                </tr>
-            }
-        </tbody>
-
-    </table>
-
-    <h4>Insert New</h4>
-
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-        새 글 등록
-    </button>
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -73,89 +26,149 @@ else
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <EditForm Model="@newCommunity" OnValidSubmit="@InsertCommunity">
-                    <div class="modal-body" style="grid-auto-rows:inherit">
 
-                        <DataAnnotationsValidator />
-                        <ValidationSummary />
-                        작성자 : <InputText id="Name" @bind-Value="newCommunity.Name" />
-                        <br />
-                        제목 : <InputText id="Title" @bind-Value="newCommunity.Title" />
-                        <br />
-                        내용 : <InputTextArea id="Text" @bind-Value="newCommunity.Text" />
-                        <br />
-                        메일 주소 :<InputText id="emailAddress" @bind-Value="newCommunity.EmailAddress" />
-                        <button type="submit" class="btn btn-primary" href="#"> Add! </button>
+                <EditForm Model="@newCommunity" OnValidSubmit="@InsertCommunity" id="making">
+                    <div class="modal-body" style="grid-auto-rows:inherit">
+                        <table class="table">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+                            <tr>
+                                <td>작성자 :</td>
+                                <td><InputText id="Name" @bind-Value="newCommunity.Name" /></td>
+                            </tr>
+                            <tr>
+                                <td>제목 :</td>
+                                <td><InputText id="Title" @bind-Value="newCommunity.Title" /></td>
+                            </tr>
+                            <tr>
+                                <td>내용 :</td>
+                                <td><InputTextArea id="Text" rows="10" style="width:203px" @bind-Value="newCommunity.Text" /></td>
+                            </tr>
+                            <tr>
+                                <td>메일 주소 :</td>
+                                <td><InputText id="emailAddress" @bind-Value="newCommunity.EmailAddress" /></td>
+                            </tr>
+                        </table>
+
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" name="AddSubmit" id="AddSubmit"> Add! </button>
+                        <button type="submit" class="btn btn-primary" onclick="location.href='/Data/Community'"> Add! </button>
+                        <!--<button type="submit" class="btn btn-primary" name="AddSubmit" id="AddSubmit"> Add! </button>-->
+                        <!--<button class="btn btn-primary" onclick="location.href='/Data/Community'"> hj </button>-->
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
-                </EditForm>
+                    </EditForm>
 
-
+                </div>
             </div>
         </div>
-    </div>
-
-
-
-}
-@code {
-    private List<CommunityModel> community;
-    private DisplayCommunityModel newCommunity = new DisplayCommunityModel();
-    private DisplayCommunityModel upCommunity = new DisplayCommunityModel();
-    private DeleteCommunityModel delCommunity = new DeleteCommunityModel();
-
-    [Parameter]
-    public EventCallback<MouseEventArgs> Onclick { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        community = await _db.GetCommunity();
     }
 
-    private async Task InsertCommunity()
+    @if (community is null)
     {
-        CommunityModel C = new CommunityModel
+        <p><em>Loadddding~~~</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Email Address</th>
+                    <th>Created Date</th>
+                    <th>Answered</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var communit in community)
+                {
+                    <tr>
+                        <td>@communit.Name</td>
+                        <td onclick="document.location = '/Data/Community/Detail/@communit.Id';" style="cursor:pointer">@communit.Title</td>
+                        <td>@communit.EmailAddress</td>
+                        <td>@communit.CreatedDate</td>
+                        @if (@communit.Answered == 0)
+                        {
+                            <td>not Answered</td>
+                        }
+                        else
+                        {
+                            <td>Answered</td>
+                        }
+
+                        <td>
+                            <a style="color:black" class="oi oi-paperclip" href="/Data/Community/Edit/@communit.Id"></a>
+                        </td>
+                        <td>
+                            <a href="/Data/Community" style="color:red" class="oi oi-trash" @onclick="(() =>DeleteCommunity(communit.Id))" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    @code {
+        private List<CommunityModel> community;
+        private DisplayCommunityModel newCommunity = new DisplayCommunityModel();
+        private DisplayCommunityModel upCommunity = new DisplayCommunityModel();
+        private DeleteCommunityModel delCommunity = new DeleteCommunityModel();
+
+
+        [Parameter]
+        public EventCallback<MouseEventArgs> Onclick { get; set; }
+
+        protected override async Task OnInitializedAsync()
         {
-            Name = newCommunity.Name,
-            Title = newCommunity.Title,
-            Text = newCommunity.Text,
-            EmailAddress = newCommunity.EmailAddress
-        };
-        await _db.InsertCommunity(C);
+            hj = true;
+            community = await _db.GetCommunity();
+        }
 
-        community.Add(C);
-        newCommunity = new DisplayCommunityModel();
-    }
-
-
-    private async Task DeleteCommunity(int num)
-    {
-        CommunityModel D = new CommunityModel
+        private async Task InsertCommunity()
         {
-            Id = num
-            // Id = delCommunity.Id
-        };
-        await _db.DeleteCommunity(D);
-        community = await _db.GetCommunity();
-    }
-    /*
-    private async Task UpdateCommunity(int num)
-    {
-        CommunityModel E = new CommunityModel
+            CommunityModel C = new CommunityModel
+            {
+                Name = newCommunity.Name,
+                Title = newCommunity.Title,
+                Text = newCommunity.Text,
+                EmailAddress = newCommunity.EmailAddress
+            };
+            await _db.InsertCommunity(C);
+
+            community.Add(C);
+            newCommunity = new DisplayCommunityModel();
+        }
+        private async Task DeleteCommunity(int num)
         {
-            Name = upCommunity.Name,
-            Title = upCommunity.Title,
-            Text = upCommunity.Text,
-            EmailAddress = upCommunity.EmailAddress,
-            Id = num
-        };
-        await _db.UpdateCommunity(E);
-        community = await _db.GetCommunity();
-        //community.Add(C);
-        upCommunity = new DisplayCommunityModel();
+            CommunityModel D = new CommunityModel
+            {
+                Id = num
+                // Id = delCommunity.Id
+            };
+            await _db.DeleteCommunity(D);
+            community = await _db.GetCommunity();
+        }
+        bool hj;
+        private void testhyunjung()
+        {
+            hj = false;
+
+        }
+        /*
+        private async Task UpdateCommunity(int num)
+        {
+            CommunityModel E = new CommunityModel
+            {
+                Name = upCommunity.Name,
+                Title = upCommunity.Title,
+                Text = upCommunity.Text,
+                EmailAddress = upCommunity.EmailAddress,
+                Id = num
+            };
+            await _db.UpdateCommunity(E);
+            community = await _db.GetCommunity();
+            //community.Add(C);
+            upCommunity = new DisplayCommunityModel();
+        }
+        */
     }
-    */
-}

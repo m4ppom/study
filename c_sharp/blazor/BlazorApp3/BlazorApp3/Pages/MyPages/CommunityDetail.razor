@@ -19,46 +19,47 @@
 else
 {
     <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Title</th>
-                <th>Text</th>
-                <th>Email Address</th>
-                <th>Created Date</th>
-                <th>Answered</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var communit in community)
-            {if (communit.Id == userId)
-                {
-                    <tr>
-                        <td>@communit.Name</td>
-                        <td>@communit.Title</td>
-                        <td>@communit.Text</td>
-                        <td>@communit.EmailAddress</td>
-                        <td>@communit.CreatedDate</td>
-                        @if (@communit.Answered == 0)
-                        {
-                            <td>not Answered</td>
-                        }
-                        else
-                        {
-                            <td>Answered</td>
-                        }
-
-                        <td>
-                            <a class="oi oi-paperclip" href="/Data/Community/Edit/@communit.Id"></a>
-                        </td>
-                        <td>
-                            <a href="/Data/Community" style="color:red" class="oi oi-trash" @onclick="(() =>DeleteCommunity(communit.Id))" />
-                        </td>
-                    </tr>
-                }
-                
+        
+        @foreach (var communit in community)
+        {if (communit.Id == userId)
+            {
+                <tr>
+                    
+                    <td style="background-color:azure">제목 : </td><td>@communit.Title</td><td>이름 : </td><td>@communit.Name</td>
+                </tr>
+                <tr>
+                    <td style="background-color: azure">내용</td><td name="detail_text">@communit.Text</td>
+                </tr>
+                <tr>
+                    <td style="background-color: azure">이메일 : </td><td>@communit.EmailAddress</td>
+                </tr>
+                <tr>
+                    <td style="background-color:azure">생성일 : </td>
+                    <td>@communit.CreatedDate</td>
+                </tr>
+                <tr>
+                    @if (@communit.Answered == 0)
+                    {
+                        <td>not Answered</td>
+                    }
+                    else
+                    {
+                        <td>Answered</td>
+                    }
+                    <td>
+                        </td><td></td><td>
+                    </td>
+                    <td>
+                        <a class="oi oi-paperclip" href="/Data/Community/Edit/@communit.Id"></a>
+                    </td>
+                    <td>
+                        <a href="/Data/Community" style="color:red" class="oi oi-trash" @onclick="(() =>DeleteCommunity(communit.Id))" />
+                    </td>
+                </tr>
             }
-        </tbody>
+                
+        }
+
     </table>
 }
 

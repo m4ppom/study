@@ -10,5 +10,7 @@ namespace DataAccessLibrary
         Task InsertCommunity(CommunityModel community);
         Task DeleteCommunity(CommunityModel communityDel);
         Task UpdateCommunity(CommunityModel community);
+
+        Task<CommunityModel> getCommunitybyId(int community);
     }
 }
