@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -22,7 +23,8 @@ namespace DataAccessLibrary
         public async Task<List<T>> LoadData<T, U>(string sql, U parameters)
         {
             string connectionString = _config.GetConnectionString(ConnectionStringName);
-            using (IDbConnection connection = new SqlConnection(connectionString))
+            //using (IDbConnection connection = new SqlConnection(connectionString))
+            using (IDbConnection connection = new MySqlConnection(connectionString))
             {
                 var data = await connection.QueryAsync<T>(sql, parameters);
                 return data.ToList();
@@ -32,7 +34,8 @@ namespace DataAccessLibrary
         public async Task<T> LoadDataOne<T, U>(string sql, U parameters)
         {
             string connectionString = _config.GetConnectionString(ConnectionStringName);
-            using (IDbConnection connection = new SqlConnection(connectionString))
+            using (IDbConnection connection = new MySqlConnection(connectionString))
+            //using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 var data = await connection.QueryFirstAsync<T>(sql, parameters);
                 return data;
@@ -42,7 +45,8 @@ namespace DataAccessLibrary
         public async Task SaveData<T>(string sql, T parameters)
         {
             string connectionnString = _config.GetConnectionString(ConnectionStringName);
-            using (IDbConnection connection = new SqlConnection(connectionnString))
+            using (IDbConnection connection = new MySqlConnection(connectionnString))
+            //using (IDbConnection connection = new SqlConnection(connectionnString))
             {
                 await connection.ExecuteAsync(sql, parameters);
             }

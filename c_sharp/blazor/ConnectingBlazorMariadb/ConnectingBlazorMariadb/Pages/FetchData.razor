@@ -1,6 +1,6 @@
 ﻿@page "/fetchdata"
 
-@using BlazorApp3.Data
+@using ConnectingBlazorMariadb.Data
 @inject WeatherForecastService ForecastService
 
 <h1>Weather forecast</h1>
@@ -38,6 +38,7 @@ else
 
 @code {
     private WeatherForecast[] forecasts;
+
     protected override async Task OnInitializedAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
