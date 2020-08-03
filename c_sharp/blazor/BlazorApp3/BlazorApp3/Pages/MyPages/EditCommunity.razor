@@ -13,7 +13,7 @@
             <DataAnnotationsValidator />
             <ValidationSummary />
             <tr>
-                <td class="edittable" >작성자  : </td>
+                <td class="edittable">작성자  : </td>
                 <td class="edittable2"> @communityOne.Name</td>
             </tr>
             <tr>
@@ -59,7 +59,7 @@
              upCommunity.EmailAddress = communityOne.EmailAddress;
             // communityOne = await _db.getCommunitybyId(userId);
         }
-
+       
 
         private async Task UpdateCommunity()
         {
@@ -72,7 +72,7 @@
                 Id = userId
             };
             await _db.UpdateCommunity(E);
-            community = await _db.GetCommunity();
+           //  community = await _db.GetCommunity();
             upCommunity = new UpdateCommunityModel();
             }
         }
