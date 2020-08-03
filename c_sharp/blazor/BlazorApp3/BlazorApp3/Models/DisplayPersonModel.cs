@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorApp3.Models
+namespace CommunitySample.Models
 {
     public class DisplayPersonModel
     {

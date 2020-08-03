@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorApp3.Models
+namespace CommunitySample.Models
 {
     public class DeleteCommunityModel
     {

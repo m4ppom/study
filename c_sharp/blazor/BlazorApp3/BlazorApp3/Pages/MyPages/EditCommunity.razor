@@ -1,7 +1,7 @@
 ﻿@page "/Data/Community/Edit/{userId:int}"
 @using DataAccessLibrary
 @using DataAccessLibrary.Models
-@using BlazorApp3.Models
+@using CommunitySample.Models
 
 
 @inject ICommunityData _db
@@ -35,10 +35,6 @@
 
 
 @code {
-
-        String hj = "ddd";
-
-
         [Parameter]
         public int userId { get; set; }
         private List<CommunityModel> community;
@@ -57,7 +53,6 @@
              upCommunity.Title = communityOne.Title;
              upCommunity.Text = communityOne.Text;
              upCommunity.EmailAddress = communityOne.EmailAddress;
-            // communityOne = await _db.getCommunitybyId(userId);
         }
        
 
@@ -65,14 +60,12 @@
         {
             CommunityModel E = new CommunityModel
             {
-
                 Title = upCommunity.Title,
                 Text = upCommunity.Text,
                 EmailAddress = upCommunity.EmailAddress,
                 Id = userId
             };
             await _db.UpdateCommunity(E);
-           //  community = await _db.GetCommunity();
             upCommunity = new UpdateCommunityModel();
             }
         }

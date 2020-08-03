@@ -1,7 +1,7 @@
 ﻿@page "/Data/Community"
 @using DataAccessLibrary
 @using DataAccessLibrary.Models
-@using BlazorApp3.Models
+@using CommunitySample.Models
 
 
 @inject ICommunityData _db
@@ -14,55 +14,52 @@
     새 글 등록
 </button>
 
-@if (hj)
-{
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">게시글 등록</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
 
-                <EditForm Model="@newCommunity" OnValidSubmit="@InsertCommunity" id="making">
-                    <div class="modal-body" style="grid-auto-rows:inherit">
-                        <table class="table">
-                            <DataAnnotationsValidator />
-                            <ValidationSummary />
-                            <tr>
-                                <td>작성자 :</td>
-                                <td><InputText id="Name" @bind-Value="newCommunity.Name" /></td>
-                            </tr>
-                            <tr>
-                                <td>제목 :</td>
-                                <td><InputText id="Title" @bind-Value="newCommunity.Title" /></td>
-                            </tr>
-                            <tr>
-                                <td>내용 :</td>
-                                <td><InputTextArea id="Text" rows="10" style="width:203px" @bind-Value="newCommunity.Text" /></td>
-                            </tr>
-                            <tr>
-                                <td>메일 주소 :</td>
-                                <td><InputText id="emailAddress" @bind-Value="newCommunity.EmailAddress" /></td>
-                            </tr>
-                        </table>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">게시글 등록</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" onclick="location.href='/Data/Community'"> Add! </button>
-                        <!--<button type="submit" class="btn btn-primary" name="AddSubmit" id="AddSubmit"> Add! </button>-->
-                        <!--<button class="btn btn-primary" onclick="location.href='/Data/Community'"> hj </button>-->
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                    </EditForm>
+            <EditForm Model="@newCommunity" OnValidSubmit="@InsertCommunity" id="making">
+                <div class="modal-body" style="grid-auto-rows:inherit">
+                    <table class="table">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+                        <tr>
+                            <td>작성자 :</td>
+                            <td><InputText id="Name" @bind-Value="newCommunity.Name" /></td>
+                        </tr>
+                        <tr>
+                            <td>제목 :</td>
+                            <td><InputText id="Title" @bind-Value="newCommunity.Title" /></td>
+                        </tr>
+                        <tr>
+                            <td>내용 :</td>
+                            <td><InputTextArea id="Text" rows="10" style="width:203px" @bind-Value="newCommunity.Text" /></td>
+                        </tr>
+                        <tr>
+                            <td>메일 주소 :</td>
+                            <td><InputText id="emailAddress" @bind-Value="newCommunity.EmailAddress" /></td>
+                        </tr>
+                    </table>
 
                 </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" onclick="location.href='/Data/Community'"> Add! </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </EditForm>
+
             </div>
         </div>
-    }
+    </div>
+    
 
     @if (community is null)
     {
@@ -120,7 +117,6 @@
 
         protected override async Task OnInitializedAsync()
         {
-            hj = true;
             community = await _db.GetCommunity();
         }
 
@@ -143,14 +139,8 @@
             CommunityModel D = new CommunityModel
             {
                 Id = num
-                // Id = delCommunity.Id
             };
             await _db.DeleteCommunity(D);
             community = await _db.GetCommunity();
-        }
-        bool hj;
-        private void testhyunjung()
-        {
-            hj = false;
         }
     }
