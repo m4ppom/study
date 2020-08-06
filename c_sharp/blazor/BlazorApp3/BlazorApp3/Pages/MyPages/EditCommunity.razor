@@ -1,7 +1,7 @@
 ﻿@page "/Data/Community/Edit/{userId:int}"
 @using DataAccessLibrary
 @using DataAccessLibrary.Models
-@using BlazorApp3.Models
+@using CommunitySample.Models
 
 
 @inject ICommunityData _db
@@ -13,7 +13,7 @@
             <DataAnnotationsValidator />
             <ValidationSummary />
             <tr>
-                <td class="edittable" >작성자  : </td>
+                <td class="edittable">작성자  : </td>
                 <td class="edittable2"> @communityOne.Name</td>
             </tr>
             <tr>
@@ -35,47 +35,37 @@
 
 
 @code {
+        [Parameter]
+        public int userId { get; set; }
+        private List<CommunityModel> community;
+        private CommunityModel communityOne;
+        private UpdateCommunityModel upCommunity = new UpdateCommunityModel();
+        protected override async Task OnInitializedAsync()
+        {
+            communityOne = new CommunityModel();
+            community = await _db.GetCommunity();
+            for(int i=0; i<community.Count; i++){
+                if ((community.ElementAt(i).Id).Equals(userId))
+                {
+                    communityOne = community.ElementAt(i);
+                }
+            }
+             upCommunity.Title = communityOne.Title;
+             upCommunity.Text = communityOne.Text;
+             upCommunity.EmailAddress = communityOne.EmailAddress;
+        }
+       
 
-    String hj = "ddd";
-
-
-    [Parameter]
-    public int userId { get; set; }
-    private List<CommunityModel> community;
-    private CommunityModel communityOne;
-    private UpdateCommunityModel upCommunity = new UpdateCommunityModel();
-    protected override async Task OnInitializedAsync()
-    {
-        communityOne = new CommunityModel();
-        communityOne.Name = "hy";
-        community = await _db.GetCommunity();
-        for(int i=0; i<community.Count; i++){
-            if ((community.ElementAt(i).Id).Equals(userId))
+        private async Task UpdateCommunity()
+        {
+            CommunityModel E = new CommunityModel
             {
-                communityOne = community.ElementAt(i);
+                Title = upCommunity.Title,
+                Text = upCommunity.Text,
+                EmailAddress = upCommunity.EmailAddress,
+                Id = userId
+            };
+            await _db.UpdateCommunity(E);
+            upCommunity = new UpdateCommunityModel();
             }
         }
-        upCommunity.Title = communityOne.Title;
-        upCommunity.Text = communityOne.Text;
-        upCommunity.EmailAddress = communityOne.EmailAddress;
-        //communityOne = await _db.getCommunitybyId(userId);
-    }
-
-
-    private async Task UpdateCommunity()
-    {
-        CommunityModel E = new CommunityModel
-        {
-
-            Title = upCommunity.Title,
-            Text = upCommunity.Text,
-            EmailAddress = upCommunity.EmailAddress,
-            Id = userId
-        };
-        await _db.UpdateCommunity(E);
-        community = await _db.GetCommunity();
-        //community.Add(C);
-        upCommunity = new UpdateCommunityModel();
-    }
-
-}

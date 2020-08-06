@@ -36,8 +36,8 @@ values (@Name, @Title, @Text, @EmailAddress);";
 
         public Task UpdateCommunity(CommunityModel communityUp)
         {
-            string sql = @"Update CommunityTable set Name=@Name, Title = @Title, Text =@Text, EmailAddress = @EmailAddress where Id = @Id ;";
-            //string sql = @"Update dbo.CommunityTable set Name=@Name, Title = @Title, Text =@Text, EmailAddress = @EmailAddress where Id = @Id ;";
+            string sql = @"Update CommunityTable set Title=@Title, Text=@Text, EmailAddress=@EmailAddress where Id = @Id ;";
+            //string sql = @"Update dbo.CommunityTable set Title = @Title, Text =@Text, EmailAddress = @EmailAddress where Id = @Id ;";
             return _db.SaveData(sql, communityUp);
         }
 

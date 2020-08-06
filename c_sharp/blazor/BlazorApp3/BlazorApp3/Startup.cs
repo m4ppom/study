@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorApp3.Data;
+using CommunitySample.Data;
 using DataAccessLibrary;
 using Blazored.Modal;
 
-namespace BlazorApp3
+namespace CommunitySample
 {
     public class Startup
     {

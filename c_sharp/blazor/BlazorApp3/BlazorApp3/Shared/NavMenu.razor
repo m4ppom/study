@@ -1,5 +1,5 @@
 ﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">BlazorApp3</a>
+    <a class="navbar-brand" href="">CommunitySample</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,9 +36,22 @@
         </li>
 
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="Data/Community">
+            <NavLink class="nav-link" href="">
                 <span class="oi oi-book" aria-hidden="true"></span> Community
             </NavLink>
+            <ul>
+                <li style="list-style:none">
+                    <NavLink class="nav-link" href="Data/Community">
+                        <span class="oi oi-list" aria-hidden="true"></span> 전체검색
+                    </NavLink>
+                </li>
+                <li style="list-style:none">
+                    <NavLink class="nav-link" href="Data/Community">
+                        <span class="oi oi-person" aria-hidden="true"></span> 내 문의글
+                    </NavLink>
+                </li>
+            </ul>
+            
         </li>
     </ul>
 </div>

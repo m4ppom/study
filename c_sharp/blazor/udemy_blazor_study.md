@@ -302,7 +302,7 @@ using Microsoft.AspNetCore.Components;
 
 - Blazor app에 JS함수 넣고 싶을 때 사용 IJSRuntime
 
-### Modal
+### Modal  -> blazormodal extension
 
 ```csharp
 <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog"

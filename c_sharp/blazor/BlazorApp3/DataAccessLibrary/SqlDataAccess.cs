@@ -46,7 +46,7 @@ namespace DataAccessLibrary
         {
             string connectionnString = _config.GetConnectionString(ConnectionStringName);
             using (IDbConnection connection = new MySqlConnection(connectionnString))
-            //using (IDbConnection connection = new SqlConnection(connectionnString))
+           // using (IDbConnection connection = new SqlConnection(connectionnString))
             {
                 await connection.ExecuteAsync(sql, parameters);
             }
