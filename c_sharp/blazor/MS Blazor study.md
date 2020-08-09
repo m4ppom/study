@@ -26,7 +26,7 @@ Version for package `Microsoft.AspNetCore.Blazor.Cli` could not be resolved.
 
 ### Shared folder
 
-- MainLayout <NavMenu /> @Body 처럼 연결해 줄 수 있음.
+- MainLayout <NavMenu /> @Body 처럼 연결해 줄 수 있음. 
 
 ### _host.cshtml
 
